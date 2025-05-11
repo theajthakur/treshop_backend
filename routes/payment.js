@@ -10,8 +10,11 @@ const razorpay = new Razorpay({
 });
 
 router.post("/create-order", async (req, res) => {
-  let { amount } = req.body;
-  if (!amount) amount = 100;
+  const { amount } = req.body;
+  if (!amount)
+    return res
+      .status(400)
+      .json({ status: "error", message: "No Amount Found!" });
   const options = {
     amount: amount * 100,
     currency: "INR",
