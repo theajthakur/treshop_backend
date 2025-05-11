@@ -5,11 +5,37 @@ const cors = require("cors");
 
 app.use(cors());
 
+const pingServer = async () => {
+  let SERVER_URL = "";
+  try {
+    SERVER_URL = `${process.env.APP_URL}/api`;
+    console.log(`Attempt Pinging to ${SERVER_URL}`);
+    const response = await fetch(SERVER_URL);
+    const data = await response.json();
+    console.log("Connected to Server!");
+    return data;
+  } catch (error) {
+    console.log(error);
+    console.log(`Failed pinging: ${SERVER_URL}`);
+    return {
+      status: "error",
+      message: error.message || "Server Failed to connect",
+    };
+  }
+};
+
+pingServer();
+
+setInterval(pingServer, 1000 * 60 * 5);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const paymentRoute = require("./routes/payment");
+const apiRoutes = require("./routes/api");
+
 app.use("/payment", paymentRoute);
+app.use("/api", apiRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
