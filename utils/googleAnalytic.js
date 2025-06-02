@@ -1,7 +1,8 @@
 const { BetaAnalyticsDataClient } = require("@google-analytics/data");
+const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
 
 const analyticsDataClient = new BetaAnalyticsDataClient({
-  keyFilename: "utils/service-account.json",
+  credentials,
 });
 
 const propertyId = "489853086";
