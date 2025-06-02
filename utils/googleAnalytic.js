@@ -14,6 +14,67 @@ const dateRanges = {
 };
 
 async function fetchUserSourcesByDateRange() {
+  return {
+    today: [
+      {
+        source: "(direct)",
+        medium: "(none)",
+        activeUsers: 1,
+      },
+      {
+        source: "(not set)",
+        medium: "(not set)",
+        activeUsers: 1,
+      },
+    ],
+    yesterday: [
+      {
+        source: "(direct)",
+        medium: "(none)",
+        activeUsers: 1,
+      },
+      {
+        source: "linkedin.com",
+        medium: "referral",
+        activeUsers: 1,
+      },
+    ],
+    thisWeek: [
+      {
+        source: "(direct)",
+        medium: "(none)",
+        activeUsers: 2,
+      },
+      {
+        source: "(not set)",
+        medium: "(not set)",
+        activeUsers: 1,
+      },
+      {
+        source: "linkedin.com",
+        medium: "referral",
+        activeUsers: 1,
+      },
+    ],
+    thisMonth: [
+      {
+        source: "(direct)",
+        medium: "(none)",
+        activeUsers: 7,
+      },
+      {
+        source: "(not set)",
+        medium: "(not set)",
+        activeUsers: 1,
+      },
+      {
+        source: "linkedin.com",
+        medium: "referral",
+        activeUsers: 1,
+      },
+    ],
+  };
+
   const results = {};
 
   for (const [key, dateRange] of Object.entries(dateRanges)) {
