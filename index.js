@@ -41,6 +41,7 @@ const apiRoutes = require("./routes/api");
 
 app.use("/payment", paymentRoute);
 app.use("/api", apiRoutes);
+app.use("/api/portfolio", require("./routes/portfolio/master"));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
