@@ -1,9 +1,14 @@
 const express = require("express");
 const app = express();
 const port = 4000;
+const connectDB = require("./utils/db");
+
 const cors = require("cors");
 
-app.use(cors());
+require("dotenv").config();
+
+app.use(cors(["localhost:5173"]));
+connectDB();
 
 const pingServer = async () => {
   let SERVER_URL = "";
