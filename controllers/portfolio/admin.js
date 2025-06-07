@@ -9,4 +9,20 @@ const listUserMessages = async (req, res) => {
   }
 };
 
-module.exports = { listUserMessages };
+const deleteUserMessage = async (req, res) => {
+  const { _id } = req.body;
+  if (!_id) return res.json({ status: "success", message: "Missing _id" });
+
+  try {
+    await Contact.findByIdAndDelete(_id);
+    return res.json({ status: "success", message: "Deleted Successfully!" });
+  } catch (error) {
+    if (!_id)
+      return res.json({
+        status: "success",
+        message: "Cannot Delete the message!",
+      });
+  }
+};
+
+module.exports = { listUserMessages, deleteUserMessage };
