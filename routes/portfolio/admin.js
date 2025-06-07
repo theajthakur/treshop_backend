@@ -3,6 +3,8 @@ const fetchUserSourcesByDateRange = require("../../utils/googleAnalytic");
 const {
   listUserMessages,
   deleteUserMessage,
+  handleLogin,
+  verifyLogin,
 } = require("../../controllers/portfolio/admin");
 const router = Router();
 
@@ -13,5 +15,8 @@ router.get("/analytic", async (req, res) => {
 
 router.get("/feedback", listUserMessages);
 router.post("/feedback/delete", deleteUserMessage);
+
+router.post("/login", handleLogin);
+router.post("/verify", verifyLogin);
 
 module.exports = router;
