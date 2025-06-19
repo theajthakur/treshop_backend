@@ -31,7 +31,7 @@ const pingServer = async () => {
 
 pingServer();
 
-setInterval(pingServer, 1000 * 60 * 5);
+setInterval(pingServer, 1000 * 60);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
