@@ -28,6 +28,6 @@ router.post("/feedback", async (req, res) => {
   }
 });
 
-router.post("/portfochatbotlio", handleChat);
+router.post("/chatbot", handleChat);
 
 module.exports = router;
