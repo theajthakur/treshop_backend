@@ -41,6 +41,7 @@ const apiRoutes = require("./routes/api");
 
 app.use("/payment", paymentRoute);
 app.use("/api", apiRoutes);
+app.use("/api/chatbot", require("./routes/chatbot"));
 app.use("/api/portfolio/admin", require("./routes/portfolio/admin"));
 app.use("/api/portfolio", require("./routes/portfolio/master"));
 
