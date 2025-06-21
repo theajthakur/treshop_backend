@@ -2,6 +2,7 @@ const express = require("express");
 const verifyCaptcha = require("../../utils/captchaVerify");
 const Contact = require("../../models/Contact");
 const router = express.Router();
+const { handleChat } = require("../../controllers/chatbots/portfolio");
 
 router.get("/feedback", async (req, res) => {
   return res.json({ status: "success", message: "Feedback API" });
@@ -26,5 +27,7 @@ router.post("/feedback", async (req, res) => {
     res.json({ status: "error", message: "Failed to save contact" });
   }
 });
+
+router.post("/portfochatbotlio", handleChat);
 
 module.exports = router;
