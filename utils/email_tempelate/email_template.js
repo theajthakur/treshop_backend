@@ -1,4 +1,4 @@
-const handlePortfolioEmail = (sender = "NA", avatar = "", message = "NA") => {
+const handlePortfolioEmail = (sender = "NA", message = "NA") => {
   const gmail = `
     <!DOCTYPE html>
       <html>

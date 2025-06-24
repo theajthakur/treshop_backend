@@ -23,7 +23,7 @@ const handleSendFeedback = async (req, res) => {
   try {
     await contact.save();
     await sendEmailSMTP(
-      "thakurvijayofficial@gmail.com",
+      "vijaysingh.handler@gmail.com",
       "Portfolio",
       "Message Received",
       handlePortfolioEmail(name, message.substr(0, 100))
