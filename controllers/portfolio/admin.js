@@ -1,5 +1,9 @@
 const Contact = require("../../models/Contact");
 const jwt = require("jsonwebtoken");
+const {
+  handleAdminReply,
+} = require("../../utils/email_tempelate/email_template");
+const sendEmailSMTP = require("../../utils/emailSender");
 const listUserMessages = async (req, res) => {
   try {
     const messages = await Contact.find().sort({ createdAt: -1 });
@@ -60,9 +64,75 @@ const verifyLogin = async (req, res) => {
   return res.json({ status: "success", message: "Login Successful" });
 };
 
+const handleReplyUser = async (req, res) => {
+  try {
+    const { reply, _id } = req.body;
+
+    if (!reply || !_id) {
+      return res.status(400).json({
+        status: "error",
+        message: "Reply message and user ID are required.",
+      });
+    }
+
+    const user = await Contact.findById(_id);
+
+    if (!user) {
+      return res.status(404).json({
+        status: "error",
+        message: "User not found.",
+      });
+    }
+
+    if (!user.email) {
+      return res.status(400).json({
+        status: "error",
+        message: "User does not have a valid email address.",
+      });
+    }
+
+    // Update the reply in the database
+    const updateResult = await Contact.updateOne({ _id }, { $set: { reply } });
+
+    if (updateResult.modifiedCount === 0) {
+      return res.status(500).json({
+        status: "error",
+        message: "Failed to update reply in database.",
+      });
+    }
+
+    // Send the email
+    const emailSent = await sendEmailSMTP(
+      user.email,
+      "Vijay Thakur",
+      "Reply from Vijay Thakur - Full Stack Web Developer | Freelancer",
+      handleAdminReply(user.name, reply)
+    );
+
+    if (!emailSent) {
+      return res.status(500).json({
+        status: "error",
+        message: "Failed to send reply email to the user.",
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      message: "Reply sent successfully.",
+    });
+  } catch (err) {
+    console.error("Error in handleReplyUser:", err);
+    return res.status(500).json({
+      status: "error",
+      message: "An internal server error occurred.",
+    });
+  }
+};
+
 module.exports = {
   listUserMessages,
   deleteUserMessage,
   handleLogin,
   verifyLogin,
+  handleReplyUser,
 };

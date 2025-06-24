@@ -5,6 +5,7 @@ const {
   deleteUserMessage,
   handleLogin,
   verifyLogin,
+  handleReplyUser,
 } = require("../../controllers/portfolio/admin");
 const router = Router();
 
@@ -15,6 +16,8 @@ router.get("/analytic", async (req, res) => {
 
 router.get("/feedback", listUserMessages);
 router.post("/feedback/delete", deleteUserMessage);
+
+router.post("/feedback/reply", handleReplyUser);
 
 router.post("/login", handleLogin);
 router.post("/verify", verifyLogin);
