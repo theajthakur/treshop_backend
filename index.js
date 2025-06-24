@@ -7,7 +7,18 @@ const cors = require("cors");
 
 require("dotenv").config();
 
-app.use(cors(["localhost:5173"]));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://theajthakur.vercel.app",
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
+
 connectDB();
 
 const pingServer = async () => {
