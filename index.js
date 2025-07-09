@@ -10,6 +10,7 @@ require("dotenv").config();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://theajthakur.vercel.app",
+  "https://treshop-backend-va8a.onrender.com",
 ];
 
 app.use(
