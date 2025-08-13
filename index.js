@@ -11,6 +11,8 @@ const allowedOrigins = [
   "http://localhost",
   "https://theajthakur.vercel.app",
   "https://treshop.vercel.app",
+  "https://dev.vijstack.com",
+  "https://www.vijstack.com/",
 ];
 
 app.use(
