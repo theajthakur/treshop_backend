@@ -8,7 +8,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const allowedOrigins = [
-  "http://localhost",
+  "http://localhost:5173",
   "https://theajthakur.vercel.app",
   "https://treshop.vercel.app",
   "https://dev.vijstack.com",
